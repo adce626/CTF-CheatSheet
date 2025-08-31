@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Cheat Sheet - Ultimate Cybersecurity Reference</title>
+    <meta name="description" content="Comprehensive CTF cheat sheet covering all competition categories with tools, techniques, and commands for Web, Pwn, Crypto, Forensics, Reverse Engineering, and more.">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading CTF Arsenal...</h2>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-halved"></i>
+                    <h1>CTF CheatSheet</h1>
+                    <span class="tagline">Ultimate Cybersecurity Reference</span>
+                </div>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search tools, techniques, commands..." autocomplete="off">
+                    <button id="clear-search" class="clear-search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="search-filters">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="web">Web</option>
+                        <option value="pwn">Pwn</option>
+                        <option value="crypto">Crypto</option>
+                        <option value="forensics">Forensics</option>
+                        <option value="reverse">Reverse Engineering</option>
+                        <option value="misc">Misc</option>
+                        <option value="osint">OSINT</option>
+                    </select>
+                    <select id="difficulty-filter">
+                        <option value="">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Category Navigation -->
+            <nav class="category-nav">
+                <button class="nav-btn active" data-category="all">
+                    <i class="fas fa-globe"></i>
+                    All Tools
+                </button>
+                <button class="nav-btn" data-category="web">
+                    <i class="fas fa-code"></i>
+                    Web
+                </button>
+                <button class="nav-btn" data-category="pwn">
+                    <i class="fas fa-bug"></i>
+                    Pwn
+                </button>
+                <button class="nav-btn" data-category="crypto">
+                    <i class="fas fa-lock"></i>
+                    Crypto
+                </button>
+                <button class="nav-btn" data-category="forensics">
+                    <i class="fas fa-search-plus"></i>
+                    Forensics
+                </button>
+                <button class="nav-btn" data-category="reverse">
+                    <i class="fas fa-cogs"></i>
+                    Reverse
+                </button>
+                <button class="nav-btn" data-category="misc">
+                    <i class="fas fa-puzzle-piece"></i>
+                    Misc
+                </button>
+                <button class="nav-btn" data-category="osint">
+                    <i class="fas fa-eye"></i>
+                    OSINT
+                </button>
+            </nav>
+
+            <!-- Tools Grid -->
+            <div id="tools-container" class="tools-container">
+                <!-- Tools will be dynamically inserted here -->
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No tools found</h3>
+                <p>Try adjusting your search terms or filters</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Tool Modal -->
+    <div id="tool-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Panel -->
+    <div id="favorites-panel" class="favorites-panel">
+        <button id="favorites-toggle" class="favorites-toggle">
+            <i class="fas fa-star"></i>
+            <span class="favorites-count">0</span>
+        </button>
+        <div class="favorites-content">
+            <h3>Favorite Tools</h3>
+            <div id="favorites-list"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 CTF CheatSheet. Built for cybersecurity professionals and CTF enthusiasts.</p>
+                <div class="footer-links">
+                    <a href="https://github.com" target="_blank">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
